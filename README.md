@@ -23,6 +23,7 @@ POSTGRES_PASSWORD=postgres
 DB_PORT=5432
 POSTGRES_DB=db_users
 POSTGRES_HOST=localhost
+BACKUP_FILE=/backups/backup.dump
 
 ```
 
