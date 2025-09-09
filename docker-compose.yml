@@ -3,11 +3,24 @@ version: "3.3"
 services:
   postgres:
     image: postgres:17
+    container_name: pg17
     environment:
-      - POSTGRES_DB=${POSTGRES_DBNAME}
+      # Variables estándar del contenedor oficial
+      - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      # Opcional: define aquí el backup por defecto (puedes sobreescribirlo con .env)
+      - BACKUP_FILE=${BACKUP_FILE:-/backups/backup.dump}
     ports:
-      - 5432:5432
+      - "5432:5432"
     volumes:
+      # Datos persistentes
       - ./postgres_data:/var/lib/postgresql/data
+      # Scripts de inicialización (nuestro restaurador vive aquí)
+      - ./init:/docker-entrypoint-initdb.d:ro
+      # Carpeta donde dejas tus backups (solo lectura por seguridad)
+      - ./backups:/backups:ro
+    # (Opcional) usa un postgresql.conf propio:
+    # command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
+    # volumes:
+    #   - ./postgresql.conf:/etc/postgresql/postgresql.conf:ro
