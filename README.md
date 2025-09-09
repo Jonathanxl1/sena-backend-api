@@ -1,98 +1,42 @@
-# Backend nest
+# 🚀 Proyecto NestJS + Postgres (Docker)
 
-Backend Template
+Este repositorio contiene un backend en **NestJS** y una base de datos **Postgres** lista para inicializarse con un backup por defecto.
 
-## Tabla de Contenidos
+---
 
-- [Library Versions](#setup)
-- [Setup](#setup)
-- [Usage](#usage)
+## 📋 Requisitos
 
-## Library Versions
+- **Git** → [Descargar aquí](https://git-scm.com/downloads)
+- **Docker + Docker Compose** → [Descargar aquí](https://www.docker.com/get-started)
+- **Node.js** (para desarrollo NestJS)→ [Descargar aquí](https://nodejs.org/)
 
-- **Nestjs**: `^10.2.0`
-- **Typescript**: `5.1.3`
-- **Nestjs/jwt**: `^10.2.27`
-- **Prisma**: `^6.1.0`
+---
 
-## Setup
+## 🛠️ Instalación y uso
 
-```env
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=postgres
-DB_PORT=5432
-POSTGRES_DB=db_users
-POSTGRES_HOST=localhost
-BACKUP_FILE=/backups/backup.dump
-
-```
-
-Para Instalar:
+1. **Clonar el repositorio**
+   ```bash
+   git clone https://github.com/Jonathanxl1/sena-backend-api.git
+   cd backend-api
+   ```
+2. **Previamente instalado Docker ejecutar en terminal**
 
 ```bash
-# npm
+ docker compose up -d
+```
+
+3. **Instalar librerias**
+
+```bash
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+4. **Ejecutar servidor**
 
 ```bash
-# npm
-npm run start:dev
-
-# pnpm
-pnpm run start:dev
-
-# yarn
-yarn start:dev
-
-# bun
-bun run start:dev
+  npm run start:dev
 ```
 
-## Production
+5. **Abrir navegador**
 
-Build the application for production:
-
-```bash
-# npm
-npm run start:prod
-
-# pnpm
-pnpm run start:prod
-
-# yarn
-yarn start:prod
-
-# bun
-bun run start:prod
-```
-
-## Usage
-
-```json
-{
-  "email": "ejemplo@email.com",
-  "password": "pass"
-}
-```
-
-ados o indicaran que no esta autorizado.
-
-## Pending
-
-Lista de pendiente que no se pudieron resolver durante el desarrollo de la prueba
-
-- [ ] Agregar Image en el storage del servidor
-- [ ] Logica para enviroment de producion y desarrollo
+[localhost:3000](http://locahost:3000)
