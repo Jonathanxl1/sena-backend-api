@@ -15,10 +15,16 @@ export class User {
   name: string;
 
   @Column()
+  lastname: string;
+
+  @Column()
+  address: string;
+
+  @Column()
   email: string;
 
   @Column()
-  password: string;
+  work_role: string;
 
   @CreateDateColumn()
   createdAt: Date;
