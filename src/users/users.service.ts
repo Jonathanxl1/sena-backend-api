@@ -15,6 +15,9 @@ export class UsersService {
     const user = await this.userRepository.create({
       ...createUserDto,
     });
+    delete user.createdAt;
+    delete user.updateAt;
+
     return this.userRepository.save(user);
   }
 
