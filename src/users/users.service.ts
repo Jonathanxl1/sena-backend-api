@@ -23,19 +23,39 @@ export class UsersService {
 
   async findAll() {
     try {
-      const users = await this.userRepository.find({ select: ['id', 'email'] });
+      const users = await this.userRepository.find({
+        select: ['id', 'email', 'address', 'lastname', 'work_role', 'name'],
+      });
       return users;
     } catch (error) {
       console.error(error);
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    try {
+      const [user] = await this.userRepository.findBy({ id });
+      if (!user) {
+        throw new NotFoundException(`Resource with ID ${id} not found`);
+      }
+      delete user?.createdAt;
+      delete user?.updateAt;
+      return user;
+    } catch (error) {
+      console.error(error);
+      throw new NotFoundException(`Resource with ID ${id} not found`);
+    }
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    try {
+      let [user] = await this.userRepository.findBy({ id });
+      user = { ...user, ...updateUserDto };
+      this.userRepository.save(user);
+    } catch (error) {
+      console.error(error);
+      throw new NotFoundException('Invalid resource');
+    }
   }
 
   async remove(id: number) {
